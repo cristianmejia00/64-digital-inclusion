@@ -150,3 +150,12 @@ dataset_report <- cbind(dataset_valid_columns, DXK)
 # Write the report for Ranjit
 write.csv(dataset_report, file = "documents_x_keywords.csv", row.names = FALSE)
 write.csv(keywords_tfidf, file = "keywords_tfidf.csv", row.names = FALSE)
+
+################################################## Difference AB and no AB keywords
+# Find the difference between the keywords considering the abstract and not.
+
+k_tfidf_wo_ab # Use readr to load the .csv file `keywords_tfidf.csv` for the results without abstract
+k_tfidf_ab <- keywords_tfidf 
+
+k_tfidf_difference <- k_tfidf_ab[!k_tfidf_ab$keywords %in% k_tfidf_wo_ab$keywords,]
+write.csv(k_tfidf_difference, file = "keywords_difference.csv", row.names = FALSE)

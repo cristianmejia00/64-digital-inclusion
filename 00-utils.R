@@ -82,3 +82,18 @@ corpusToText <- function(a_tidyCorpus) {
 remove_copyright_statements <- function(a_text) {
   return(gsub(" [A-z0-9 ]*?\\(C\\).*$", "", a_text))
 }
+
+
+
+# Util function to get the strings
+create_keyword_string <- function(a_row) {
+  tmp <- a_row[a_row > 0]
+  if (length(tmp) > 0) {
+    tmp_str <- lapply(c(1:length(tmp)), function(x){
+      return(rep(names(tmp[x]), tmp[x]))
+    }) |> unlist() |> paste(collapse = "; ")    
+  } else {
+    tmp_str <- ""
+  }
+  return(tmp_str)
+}

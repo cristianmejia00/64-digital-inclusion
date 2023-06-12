@@ -9,6 +9,12 @@
 load("dataset.rdata")
 #dataset <- open_from_fukan_2(file.choose())
 
+# change the name of the WOS keywords (ID column) not to lose the data
+# Because later we will define our own ID column
+dataset <- dataset[,c(1:39)]
+setnames(dataset, "ID", "ID_WOS")
+
+
 ## Read util functions
 source("00-utils.R")
 
